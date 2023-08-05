@@ -1,0 +1,27 @@
+{
+  "name": "example-nodejs-server-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node web.js",
+    "start:dev": "nodemon node web.js",
+    "start:api": "node api.js",
+    "start:dev:api": "nodemon node api.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/daniel-alts/example-nodejs-server-api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/daniel-alts/example-nodejs-server-api/issues"
+  },
+  "homepage": "https://github.com/daniel-alts/example-nodejs-server-api#readme",
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
