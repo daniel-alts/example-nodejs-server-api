@@ -17,7 +17,11 @@ const handleRequest = (req, res) => { // handles request
         try {
             const splitUrl = req.url.split('/') // splits by '/'
             const filename = splitUrl[1] // gets file name eg: index.html
-            const fileLocation = `./${filename}` // gets file location eg './index.html'
+            console.log({ filename })
+            const fileLocation = `./static/${filename}` // gets file location eg './index.html'
+            
+
+            console.log({ fileLocation })
     
             const file = fs.readFileSync(fileLocation) // reads the file synchronously
             res.setHeader('content-type', 'text/html') // sets content type header
@@ -25,7 +29,7 @@ const handleRequest = (req, res) => { // handles request
             res.write(file) // sets data to be returned
             res.end()  // ends the request cycle
         } catch (error) {
-            const file = fs.readFileSync('./404.html') // reads the 404 file
+            const file = fs.readFileSync('./static/404.html') // reads the 404 file
             res.setHeader('content-type', 'text/html') // sets content type header
             res.writeHead(500) // sets http status code
             res.write(file) // sets data to be returned
@@ -35,6 +39,8 @@ const handleRequest = (req, res) => { // handles request
 }
 
 const server = http.createServer(handleRequest)  // create server, handle request
+
+// server.on('request', handleRequest)
 
 
 server.listen(port, () => { // start server, listen for connections

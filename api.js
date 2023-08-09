@@ -34,7 +34,8 @@ const handleRequest = (req, res) => { // handles all requests, routing and metho
 
     if (req.url === '/v1/students' && req.method === 'POST') { // checks the url and method of the request
 
-        students.push({ ...req.body, id: Math.floor(Math.random() * 500).toString()}) // adds student object from the body of request to the student array, id is to specify unique students
+        const uniqueId = Math.floor(Math.random() * 500).toString()
+        students.push({ ...req.body, id: uniqueId  }) // adds student object from the body of request to the student array, id is to specify unique students
 
         return response({  data: students,  code: 201  }) // return response for the response handler
     }
@@ -46,6 +47,10 @@ const handleRequest = (req, res) => { // handles all requests, routing and metho
 
     if (req.url.startsWith('/v1/students/') && req.method === 'GET') { // checks the url and method of the request
         const id = req.url.split('/')[3] // if req.url === /v1/students/123 this ensures id === 123
+
+        if (!id.length) {
+            return response({ code: 422, error: 'Pass an id in the path params' }) 
+        }
 
         const studentIndex = students.findIndex((student) => student.id === id) // find index of the student
 
