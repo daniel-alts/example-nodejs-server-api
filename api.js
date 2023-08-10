@@ -69,9 +69,10 @@ const handleRequest = (req, res) => { // handles all requests, routing and metho
         }
 
 
-        const student = { ...students[studentIndex], ...req.body } // updates the student information
-
-        return response({ data: student, code: 200 }) // return response
+        const student = { ...students[studentIndex],id: Math.floor(Math.random() * 10).toString()} //, updates the student information
+        students.splice(studentIndex,1,student) //removes the oldstudent info and replaced it with updated info
+        
+        return response({ data: students, code: 200 }) // return response
 
     }
 
