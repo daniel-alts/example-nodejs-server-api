@@ -68,9 +68,8 @@ const handleRequest = (req, res) => { // handles all requests, routing and metho
             return response({ code: 404, error: 'Student not found' }) // return response when student is not found
         }
 
-
-        const student = { ...students[studentIndex], ...req.body } // updates the student information
-
+        const student = {...students[studentIndex],...req.body} //, updates the student information
+        students.splice(studentIndex,1,student) //removes the oldstudent info and replaced it with updated info
         return response({ data: student, code: 200 }) // return response
 
     }
